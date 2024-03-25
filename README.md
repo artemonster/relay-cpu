@@ -5,16 +5,16 @@ If you ever think of doing something similar, please check out [my tips](#Tips)
 Quick facts: 
 * Harvard architecture with 4096 16bit instructions
 * 256 bytes of RAM (more with paging)
-* Whopping 10 Hz clock speed
-* Accumulator with Carry and Zero flags
+* Whopping 10 Hz clock speed, most instructions taking 2 cycles
+* 8 bit Accumulator register with Carry and Zero flags
 * 3 Adressing modes: immediate, absolute and relative
-* 297 DPDT relays mounted on a wooden frame
+* 297 DPDT socketed relays mounted on a wooden frame with individual LED
 * 7.5 kg weight
 
 [Youtube short with a test program running so you can hear it](https://youtube.com/shorts/OLjjTxIbFqM?si=LqGwUwT4EK45KLl0)
 
 Current status: Program counter and instruction fetch are done, parts of ALU are also done.  
-Up next: sorting stability issues.  
+Up next: sorting out reliability issues.  
 
 ## Main Diagram
 ![diag](images/diag.png)
@@ -22,7 +22,8 @@ Up next: sorting stability issues.
 The plexiglass at the front adds stability to the whole build. Bus wiring is mostly done in front to free up the routing space in the back and also for aesthetic reasons.
 ![layout](images/front.jpg)
 ## Back 
-Cable salad :)
+Main star of the routing is the PCB screw connector (blue part) with 8 connections for each relay. Upper left screw terminal is (mostly, with few exceptions) ground for the coil (vertical lines extending from the lower horizontal wire on the frame). Upper right is the coil control. Then two sides for DPDT.
+Wiring is very tedious, because each end has to be ferruled, or the wire will fall out of the connector.
 ![layout](images/back.jpg)
 ## Control Board 
 The control board emulates ROM and RAM, drives clock and reset, with an added benefit of serving as a debug device, sending execution trace to host PC.
@@ -82,6 +83,7 @@ But if you are serious, then please consider following points that I have painst
 6. Using diodes is cheating, but you do you.
 7. Using capacitors is almost cheating :) (but may be unavoidable in general to fix timing issues)
 8. Do small scale tests before you commit to big work packages. I have done a lot of wiring only to find out that I made a huge conceptual mistake.
+9. Do a test rig for you relays and characterize their timing - a lot of relays are either dead broken from the factory or have some crazy timings (i.e. 20ms rising time instead of 3ms).
 
 # Whats in here
 * asm.py - is a homebrew macro assembler with inlining, local vars, virtual stack and environments + an interpreter
