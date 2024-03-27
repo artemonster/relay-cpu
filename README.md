@@ -1,6 +1,8 @@
 # 8 bit relay CPU 
 Here you will find a dump of everything related to my homemade 8 bit relay processor that has been in the making since 2017 in its 4th reincarnation.
-If you ever think of doing something similar, please check out [my tips](#Tips)
+If you ever think of doing something similar, please check out [my tips](#Tips) 
+If you have any questions, just comment on the [issue](https://github.com/artemonster/relay-cpu/issues/1)
+
 
 Quick facts: 
 * Harvard architecture with 4096 16bit instructions
